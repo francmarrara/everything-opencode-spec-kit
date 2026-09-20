@@ -1,233 +1,250 @@
 # Everything OpenCode + Spec Kit
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-![Node.js](https://img.shields.io/badge/-Node.js-339933?logo=node.js&logoColor=white)
-![Markdown](https://img.shields.io/badge/-Markdown-000000?logo=markdown&logoColor=white)
 
-**A reusable, native OpenCode + GitHub Spec Kit framework for AI-assisted software development.**
+**Framework riutilizzabile per sviluppo software assistito da AI con OpenCode + GitHub Spec Kit.**
 
-Migrated from [everything-claude-code](https://github.com/affaan-m/everything-claude-code) with all Claude Code-specific dependencies replaced by OpenCode-native equivalents.
+## Cos'e
 
----
+Questo e un framework che fornisce:
 
-## What This Is
+- **8 agenti specializzati** con permessi least-privilege
+- **14 comandi operativi** per TDD, verifica, code review, sicurezza e altro
+- **12 skill** che coprono pattern backend/frontend, standard di codice, workflow TDD e sicurezza
+- **5 plugin** che implementano lifecycle hooks, salvaguardie git, formattazione, verifica e logging
+- **16 configurazioni server MCP** con credenziali basate su environment variables (default: disabilitati)
+- **130+ test automatizzati** che coprono livelli comportamentali, integrazione e unit
 
-This framework provides:
+Tutti i componenti seguono la [Costituzione](.specify/memory/constitution.md) e sono governati dal workflow Spec Kit.
 
-- **8 specialized agents** with least-privilege permissions
-- **14 operational commands** for TDD, verification, code review, security review, and more
-- **12 skills** covering backend/frontend patterns, coding standards, TDD workflow, and security
-- **5 plugins** implementing lifecycle hooks, git safeguards, formatting, verification, and logging
-- **15 MCP server configurations** with environment-backed credentials (default: disabled)
-- **98 automated tests** covering behavioral, integration, and unit levels
-
-All components follow the [Constitution](.specify/memory/constitution.md) and are governed by the Spec Kit workflow.
-
----
-
-## Architecture
+## Struttura
 
 ```
-.specify/                  # Spec Kit layer (governance)
-├── memory/
-│   └── constitution.md    # 17 principles, non-negotiable
-├── templates/
-├── scripts/
-└── workflows/
+.opencode/                 # Runtime OpenCode
+├── agents/                # Agenti specializzati
+├── commands/              # Comandi slash operativi
+├── skills/                # Knowledge e procedure riutilizzabili
+├── instructions/          # Istruzioni runtime
+├── plugins/               # Estensioni lifecycle native OpenCode
+├── contracts/             # Specifiche formato componenti
+├── lib/                   # Utility condivise
+├── mcp/servers/           # Configurazioni server MCP
+└── tests/                 # Suite di test automatizzati
 
-.opencode/                 # OpenCode layer (runtime)
-├── agents/                # Specialized autonomous units
-├── commands/              # Operational slash commands
-├── skills/                # Reusable knowledge and procedures
-├── instructions/          # Runtime instructions (migrated from rules)
-├── plugins/               # OpenCode-native lifecycle extensions
-│   ├── lifecycle/
-│   ├── git-safeguards/
-│   ├── formatting/
-│   ├── verification/
-│   ├── memory-session/
-│   └── logging/
-├── contracts/             # Component format specifications
-├── lib/                   # Shared utilities
-├── mcp/servers/           # MCP server configurations
-└── tests/                 # Automated test suite
-    ├── behavioral/
-    ├── integration/
-    └── unit/
+.specify/                  # Layer governance Spec Kit
+├── memory/                # Costituzione e memoria
+├── templates/             # Template per documenti
+├── scripts/bash/          # Script helper
+└── workflows/             # Definizioni workflow
 ```
 
----
-
-## Quick Start
-
-### Prerequisites
-
-- OpenCode installed and configured
-- Node.js 18+
-- Git
-
-### Installation
+## Installazione
 
 ```bash
-# Clone the repository
 git clone <repo-url>
 cd everything-opencode-spec-kit
-
-# Verify installation
-node .opencode/tests/run-all.js
 ```
 
-### Verify Zero Claude Code References
+## Creare un Nuovo Progetto
+
+Il bootstrap crea un nuovo progetto autonomo e indipendente dal framework:
 
 ```bash
-grep -r "CLAUDE_" .opencode/ || echo "PASS: No CLAUDE_ references"
-grep -r "~/.claude" .opencode/ || echo "PASS: No ~/.claude references"
-grep -r "claude-plugin" .opencode/ || echo "PASS: No claude-plugin references"
+./scripts/init-project.sh ~/Documenti/mio-sito
 ```
 
----
+Il comando:
 
-## Agents
+1. Copia `.opencode/` (agents, commands, skills, plugins, lib, contracts, tests)
+2. Copia `.specify/` (templates, scripts, workflows)
+3. Genera la configurazione Spec Kit
+4. Crea `.gitignore` e `README.md`
 
-| Agent | Tools | Role |
-|-------|-------|------|
-| architect | Read, Grep, Glob | System design (read-only) |
-| build-error-resolver | Read, Write, Edit, Bash, Grep, Glob | Fix build errors |
-| code-reviewer | Read, Grep, Glob, Bash | Code quality review (read-only) |
-| doc-updater | Read, Write, Edit, Bash, Grep, Glob | Documentation maintenance |
-| e2e-runner | Read, Write, Edit, Bash, Grep, Glob | Playwright E2E testing |
-| refactor-cleaner | Read, Write, Edit, Bash, Grep, Glob | Dead code cleanup |
-| security-reviewer | Read, Write, Edit, Bash, Grep, Glob | Vulnerability analysis |
+### Opzioni
+
+```bash
+./scripts/init-project.sh --help           # Mostra aiuto
+./scripts/init-project.sh --force <path>   # Sovrascrivi se esiste
+./scripts/init-project.sh --no-git <path>  # Salta inizializzazione git
+./scripts/init-project.sh --version        # Mostra versione framework
+```
+
+### Cosa viene copiato
+
+| Componente | Copiato | Note |
+|------------|---------|------|
+| `.opencode/agents/` | Si | 8 agenti specializzati |
+| `.opencode/commands/` | Si | 14 comandi operativi + 10 speckit |
+| `.opencode/skills/` | Si | 12 skill |
+| `.opencode/plugins/` | Si | 5 plugin lifecycle |
+| `.opencode/lib/` | Si | Utility condivise |
+| `.opencode/contracts/` | Si | Specifiche componenti |
+| `.opencode/tests/` | Si | Suite test |
+| `.opencode/package.json` | Si | Dipendenza @opencode-ai/plugin |
+| `.specify/templates/` | Si | 5 template |
+| `.specify/scripts/bash/` | Si | 6 script helper |
+| `.specify/workflows/` | Si | Workflow Spec Kit |
+
+### Cosa NON viene copiato
+
+| Componente | Escluso | Motivo |
+|------------|---------|--------|
+| `.git/` | Si | Ogni progetto ha il suo repo |
+| `specs/` | Si | Documentazione storica migrazione |
+| `node_modules/` | Si | Il progetto le installerà |
+| `CONTRIBUTING.md` | Si | Specifico del framework |
+| `LICENSE` | Si | Specifico del framework |
+| `WORLDFLOWAI.md` | Si | Legacy Claude Code |
+
+### Esempio Completo
+
+```bash
+# 1. Crea il progetto
+./scripts/init-project.sh ~/Documenti/mio-sito
+
+# 2. Entra nella directory
+cd ~/Documenti/mio-sito
+
+# 3. Apri con OpenCode
+opencode .
+
+# 4. Ratifica la Costituzione
+/speckit.constitution
+
+# 5. Crea la prima feature
+/speckit.specify autenticazione-utenti
+
+# 6. Workflow completo
+/speckit.clarify           # Risolvi ambiguita
+/speckit.plan              # Pianifica implementazione
+/speckit.tasks             # Decompone in task
+/speckit.implement         # Implementa
+/speckit.analyze           # Verifica coerenza
+/speckit.converge          # Verifica conformita
+```
+
+## Avviare OpenCode
+
+```bash
+cd ~/Documenti/mio-sito
+opencode .
+```
+
+OpenCode scopre automaticamente `.opencode/` e `.specify/` nella directory corrente.
+
+## Workflow Spec Kit
+
+Spec Kit definisce **COSA** (requisiti, architettura). OpenCode definisce **COME** (implementazione, testing, review).
+
+```
+Costituzione -> Specify -> Clarify -> Plan -> Tasks -> Implement -> Analyze -> Converge
+```
+
+| Comando | Scopo |
+|---------|-------|
+| `/speckit.constitution` | Ratifica o modifica la costituzione del progetto |
+| `/speckit.specify` | Crea specifica feature |
+| `/speckit.clarify` | Risolvi ambiguita nella specifica |
+| `/speckit.plan` | Genera piano di implementazione |
+| `/speckit.tasks` | Decompone in task eseguibili |
+| `/speckit.analyze` | Verifica coerenza tra artifacti |
+| `/speckit.converge` | Verifica implementazione vs specifica |
+
+## Agenti
+
+| Agente | Strumenti | Ruolo |
+|--------|-----------|-------|
+| architect | Read, Grep, Glob, Webfetch | Progettazione architettura (sola lettura) |
+| build-error-resolver | Read, Write, Edit, Bash, Grep, Glob | Fix errori build |
+| code-reviewer | Read, Grep, Glob, Bash | Review qualita codice |
+| doc-updater | Read, Write, Edit, Bash, Grep, Glob | Aggiornamento documentazione |
+| e2e-runner | Read, Write, Edit, Bash, Grep, Glob | Test end-to-end Playwright |
+| refactor-cleaner | Read, Write, Edit, Bash, Grep, Glob | Rimozione codice morto |
+| security-reviewer | Read, Write, Edit, Bash, Grep, Glob | Analisi vulnerabilita |
 | tdd-guide | Read, Write, Edit, Bash, Grep | Test-driven development |
 
-See [agents/README.md](.opencode/agents/README.md) for full permission justifications.
+## Comandi
 
----
-
-## Commands
-
-| Command | Description |
+| Comando | Descrizione |
 |---------|-------------|
-| `/tdd` | Test-driven development workflow |
-| `/verify` | Comprehensive verification (build, types, lint, tests, security) |
-| `/code-review` | Security and quality review |
-| `/e2e` | End-to-end test generation with Playwright |
-| `/build-fix` | Incremental build error fixing |
-| `/orchestrate` | Multi-agent workflow coordination |
-| `/learn` | Pattern extraction from sessions |
-| `/checkpoint` | Workflow state snapshots |
+| `/tdd` | Workflow test-driven development |
+| `/verify` | Verifica completa (build, types, lint, test, security) |
+| `/code-review` | Review sicurezza e qualita |
+| `/e2e` | Generazione test E2E con Playwright |
+| `/build-fix` | Fix incrementale errori build |
+| `/orchestrate` | Coordinamento workflow multi-agente |
+| `/learn` | Estrazione pattern da sessioni |
+| `/checkpoint` | Snapshot stato workflow |
 | `/eval` | Eval-driven development |
-| `/refactor-clean` | Dead code removal |
-| `/test-coverage` | Coverage analysis |
-| `/update-docs` | Documentation sync |
-| `/update-codemaps` | Code map updates |
-| `/setup-pm` | Configure package manager |
+| `/refactor-clean` | Rimozione codice morto |
+| `/test-coverage` | Analisi coverage |
+| `/update-docs` | Sincronizzazione documentazione |
+| `/update-codemaps` | Aggiornamento code map |
+| `/setup-pm` | Configurazione package manager |
 
----
+## MCP
 
-## Skills
+16 server MCP configurati con credenziali basate su environment variables:
 
-| Skill | Purpose |
-|-------|---------|
-| backend-patterns | API, database, caching patterns |
-| clickhouse-io | ClickHouse integration |
-| coding-standards | Language best practices |
-| continuous-learning | Auto-extract patterns from sessions |
-| eval-harness | Verification loop evaluation |
-| frontend-patterns | React, Next.js patterns |
-| project-guidelines-example | Template for project rules |
-| security-review | Security checklist |
-| strategic-compact | Context compaction suggestions |
-| tdd-workflow | TDD methodology |
-| verification-loop | Continuous verification |
-| mcp-configs | MCP server management |
-
----
-
-## Spec Kit Integration
-
-This framework follows the Spec Kit lifecycle:
-
-```
-Constitution → Specify → Clarify → Plan → Tasks → Implement → Analyze → Converge
-```
-
-### Available Spec Kit Commands
-
-| Command | Purpose |
-|---------|---------|
-| `/speckit.constitution` | Ratify or amend project constitution |
-| `/speckit.specify` | Create feature specification |
-| `/speckit.clarify` | Resolve ambiguities in spec |
-| `/speckit.plan` | Generate implementation plan |
-| `/speckit.tasks` | Decompose into executable tasks |
-| `/speckit.analyze` | Check consistency across artifacts |
-| `/speckit.converge` | Verify implementation matches spec |
-
-### Separation Rule
-
-Spec Kit defines **WHAT** (requirements, architecture). OpenCode defines **HOW** (implementation, testing, review). The framework MUST NOT duplicate Spec Kit functionality inside OpenCode components.
-
----
-
-## MCP Integrations
-
-15 MCP servers configured with environment-backed credentials:
-
-| Server | Type | Purpose |
-|--------|------|---------|
-| github | stdio | GitHub operations |
+| Server | Tipo | Scopo |
+|--------|------|-------|
+| github | stdio | Operazioni GitHub |
 | firecrawl | stdio | Web scraping |
-| supabase | stdio | Database operations |
-| memory | stdio | Persistent memory |
+| supabase | stdio | Operazioni database |
+| memory | stdio | Memoria persistente |
 | sequential-thinking | stdio | Chain-of-thought reasoning |
-| vercel | http | Vercel deployments |
-| railway | stdio | Railway deployments |
-| cloudflare-docs | http | Cloudflare docs |
+| vercel | http | Deploy Vercel |
+| railway | stdio | Deploy Railway |
+| cloudflare-docs | http | Documentazione Cloudflare |
 | cloudflare-workers-builds | http | Workers builds |
 | cloudflare-workers-bindings | http | Workers bindings |
 | cloudflare-observability | http | Observability |
-| clickhouse | http | Analytics queries |
-| context7 | stdio | Live documentation |
-| magic | stdio | UI components |
-| filesystem | stdio | Filesystem operations |
+| clickhouse | http | Query analytics |
+| context7 | stdio | Documentazione live |
+| magic | stdio | Componenti UI |
+| filesystem | stdio | Operazioni filesystem |
 
-All servers default to `enabled: false`. Enable only what you need.
+Tutti i server hanno default `enabled: false`. Abilita solo quelli che ti servono.
 
----
-
-## Testing
+## Test
 
 ```bash
-# Run all 98 tests
+# Esegui tutti i 130+ test
 node .opencode/tests/run-all.js
 
-# Run specific test categories
+# Esegui categorie specifiche
 node .opencode/tests/behavioral/tdd-workflow.test.js
 node .opencode/tests/integration/mcp-config.test.js
 node .opencode/tests/unit/utils.test.js
+node .opencode/tests/bootstrap/init-project.test.js
 ```
 
----
+## Aggiornare il Framework
 
-## Contributing
+Per aggiornare il framework con le ultime modifiche:
 
-Contributions are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+```bash
+cd everything-opencode-spec-kit
+git pull
 
-When adding components:
-1. Follow the Constitution principles
-2. Add automated tests
-3. Document permission justifications (for agents)
-4. Run the full test suite before submitting
+# Per aggiornare un progetto esistente, copia solo i file modificati
+# oppure ricrea il progetto con --force
+./scripts/init-project.sh --force ~/Documenti/mio-sito
+```
 
----
+## Separazione Framework / Progetto
 
-## Upstream Provenance
+Il framework e i progetti creati devono restare separati:
 
-This project incorporates components from [everything-claude-code](https://github.com/affaan-m/everything-claude-code) by Affaan Mustafa, licensed under MIT.
+- Il framework contiene gli strumenti di bootstrap e la documentazione
+- Ogni progetto e autonomo e indipendente dopo il bootstrap
+- Non inserire codice applicativo nel framework
+- Non inserire artifacti del framework nei progetti generati
 
----
+## Provenienza
+
+Questo progetto incorpora componenti da [everything-claude-code](https://github.com/affaan-m/everything-claude-code) di Affaan Mustafa, licenziato sotto MIT.
 
 ## License
 
-MIT - See [LICENSE](LICENSE) for details.
+MIT - Vedi [LICENSE](LICENSE) per dettagli.

@@ -11,7 +11,6 @@ const fs = require('fs');
 const path = require('path');
 
 const PLUGINS_DIR = path.join(__dirname, '../../plugins');
-const HOOKS_DIR = path.join(__dirname, '../../../hooks');
 
 const VALID_EVENTS = [
   'tool.execute.before',
@@ -40,10 +39,6 @@ const PLUGIN_FILES = [
 
 function readFile(filePath) {
   try { return fs.readFileSync(filePath, 'utf8'); } catch { return null; }
-}
-
-function readJson(filePath) {
-  try { return JSON.parse(fs.readFileSync(filePath, 'utf8')); } catch { return null; }
 }
 
 let passed = 0;
@@ -111,36 +106,6 @@ for (const pluginFile of PLUGIN_FILES) {
     expect(typeof plugin).toBe('function');
   });
 }
-
-// Test source hooks.json (upstream provenance)
-test('source hooks.json exists and is valid JSON', () => {
-  const hooks = readJson(path.join(HOOKS_DIR, 'hooks.json'));
-  expect(hooks).notToBeNull();
-});
-
-test('source hooks.json has required event types', () => {
-  const hooks = readJson(path.join(HOOKS_DIR, 'hooks.json'));
-  expect(hooks.hooks).notToBeNull();
-  expect(hooks.hooks.PreToolUse).notToBeNull();
-  expect(hooks.hooks.PostToolUse).notToBeNull();
-  expect(hooks.hooks.SessionStart).notToBeNull();
-  expect(hooks.hooks.Stop).notToBeNull();
-});
-
-test('source hooks.json commands use node', () => {
-  const hooks = readJson(path.join(HOOKS_DIR, 'hooks.json'));
-  for (const [eventType, hookArray] of Object.entries(hooks.hooks)) {
-    for (const entry of hookArray) {
-      for (const hook of entry.hooks) {
-        if (hook.type === 'command') {
-          if (!hook.command.startsWith('node')) {
-            throw new Error(`${eventType} hook does not start with node: ${hook.command.substring(0, 50)}`);
-          }
-        }
-      }
-    }
-  }
-});
 
 console.log(`\nResults: ${passed} passed, ${failed} failed`);
 process.exit(failed > 0 ? 1 : 0);

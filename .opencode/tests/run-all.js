@@ -25,7 +25,8 @@ const testFiles = [
   'behavioral/verification-honesty.test.js',
   'integration/mcp-config.test.js',
   'unit/utils.test.js',
-  'unit/package-manager.test.js'
+  'unit/package-manager.test.js',
+  'bootstrap/init-project.test.js'
 ];
 
 console.log('╔══════════════════════════════════════════════════════════╗');

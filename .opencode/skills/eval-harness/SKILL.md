@@ -171,7 +171,7 @@ Generates full eval report
 
 Store evals in project:
 ```
-.claude/
+.opencode/
   evals/
     feature-xyz.md      # Eval definition
     feature-xyz.log     # Eval run history

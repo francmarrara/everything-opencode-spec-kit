@@ -1,12 +1,12 @@
-# Contributing to Everything Claude Code
+# Contributing to Everything OpenCode + Spec Kit
 
-Thanks for wanting to contribute. This repo is meant to be a community resource for Claude Code users.
+Thanks for wanting to contribute. This repo is a reusable framework for AI-assisted software development using OpenCode + GitHub Spec Kit.
 
 ## What We're Looking For
 
 ### Agents
 
-New agents that handle specific tasks well:
+New agents that handle specific tasks well (place in `.opencode/agents/`):
 - Language-specific reviewers (Python, Go, Rust)
 - Framework experts (Django, Rails, Laravel, Spring)
 - DevOps specialists (Kubernetes, Terraform, CI/CD)
@@ -14,7 +14,7 @@ New agents that handle specific tasks well:
 
 ### Skills
 
-Workflow definitions and domain knowledge:
+Workflow definitions and domain knowledge (place in `.opencode/skills/`):
 - Language best practices
 - Framework patterns
 - Testing strategies
@@ -23,23 +23,23 @@ Workflow definitions and domain knowledge:
 
 ### Commands
 
-Slash commands that invoke useful workflows:
+Slash commands that invoke useful workflows (place in `.opencode/commands/`):
 - Deployment commands
 - Testing commands
 - Documentation commands
 - Code generation commands
 
-### Hooks
+### Plugins
 
-Useful automations:
-- Linting/formatting hooks
+OpenCode-native lifecycle extensions (place in `.opencode/plugins/`):
+- Formatting hooks
 - Security checks
 - Validation hooks
 - Notification hooks
 
-### Rules
+### Instructions
 
-Always-follow guidelines:
+Runtime instructions (place in `.opencode/instructions/`):
 - Security rules
 - Code style rules
 - Testing requirements
@@ -47,7 +47,7 @@ Always-follow guidelines:
 
 ### MCP Configurations
 
-New or improved MCP server configs:
+New or improved MCP server configs (place in `.opencode/mcp/servers/`):
 - Database integrations
 - Cloud provider MCPs
 - Monitoring tools
@@ -60,8 +60,8 @@ New or improved MCP server configs:
 ### 1. Fork the repo
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/everything-claude-code.git
-cd everything-claude-code
+git clone https://github.com/YOUR_USERNAME/everything-opencode-spec-kit.git
+cd everything-opencode-spec-kit
 ```
 
 ### 2. Create a branch
@@ -72,13 +72,13 @@ git checkout -b add-python-reviewer
 
 ### 3. Add your contribution
 
-Place files in the appropriate directory:
+Place files in the appropriate directory under `.opencode/`:
 - `agents/` for new agents
-- `skills/` for skills (can be single .md or directory)
+- `skills/` for skills (single .md or directory with SKILL.md)
 - `commands/` for slash commands
-- `rules/` for rule files
-- `hooks/` for hook configurations
-- `mcp-configs/` for MCP server configs
+- `instructions/` for instruction files
+- `plugins/` for lifecycle plugins (with index.js)
+- `mcp/servers/` for MCP server configs
 
 ### 4. Follow the format
 
@@ -86,10 +86,13 @@ Place files in the appropriate directory:
 
 ```markdown
 ---
-name: agent-name
 description: What it does
-tools: Read, Grep, Glob, Bash
-model: sonnet
+mode: subagent
+permission:
+  read: allow
+  grep: allow
+  glob: allow
+  bash: deny
 ---
 
 Instructions here...
@@ -125,19 +128,23 @@ description: Brief description of command
 Detailed instructions...
 ```
 
-**Hooks** should include descriptions:
+**Plugins** should follow the OpenCode plugin API:
 
-```json
-{
-  "matcher": "...",
-  "hooks": [...],
-  "description": "What this hook does"
-}
+```javascript
+module.exports = {
+  name: 'plugin-name',
+  hooks: [
+    { event: 'tool.execute.after', handler: async (ctx) => { ... } }
+  ]
+};
 ```
 
 ### 5. Test your contribution
 
-Make sure your config works with Claude Code before submitting.
+```bash
+# Run the full test suite
+node .opencode/tests/run-all.js
+```
 
 ### 6. Submit a PR
 
@@ -182,9 +189,9 @@ Then open a PR with:
 
 ---
 
-## Questions?
+## Constitution
 
-Open an issue or reach out on X: [@affaanmustafa](https://x.com/affaanmustafa)
+All contributions must follow the [Constitution](.specify/memory/constitution.md) principles. Review it before submitting.
 
 ---
 
