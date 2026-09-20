@@ -1,0 +1,7 @@
+{
+  "name": "railway",
+  "command": "npx",
+  "args": ["-y", "@railway/mcp-server"],
+  "description": "Railway deployments",
+  "enabled": false
+}

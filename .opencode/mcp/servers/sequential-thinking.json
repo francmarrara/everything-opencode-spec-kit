@@ -1,0 +1,7 @@
+{
+  "name": "sequential-thinking",
+  "command": "npx",
+  "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"],
+  "description": "Chain-of-thought reasoning",
+  "enabled": false
+}

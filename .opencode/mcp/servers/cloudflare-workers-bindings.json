@@ -1,0 +1,7 @@
+{
+  "name": "cloudflare-workers-bindings",
+  "type": "http",
+  "url": "https://bindings.mcp.cloudflare.com/mcp",
+  "description": "Cloudflare Workers bindings",
+  "enabled": false
+}

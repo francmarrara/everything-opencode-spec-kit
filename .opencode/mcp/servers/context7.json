@@ -1,0 +1,7 @@
+{
+  "name": "context7",
+  "command": "npx",
+  "args": ["-y", "@context7/mcp-server"],
+  "description": "Live documentation lookup",
+  "enabled": false
+}

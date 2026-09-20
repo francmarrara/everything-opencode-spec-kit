@@ -1,0 +1,7 @@
+{
+  "name": "clickhouse",
+  "type": "http",
+  "url": "https://mcp.clickhouse.cloud/mcp",
+  "description": "ClickHouse analytics queries",
+  "enabled": false
+}

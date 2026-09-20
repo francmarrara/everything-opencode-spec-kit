@@ -1,0 +1,7 @@
+{
+  "name": "magic",
+  "command": "npx",
+  "args": ["-y", "@magicuidesign/mcp@latest"],
+  "description": "Magic UI components",
+  "enabled": false
+}

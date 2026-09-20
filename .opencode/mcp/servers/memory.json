@@ -1,0 +1,7 @@
+{
+  "name": "memory",
+  "command": "npx",
+  "args": ["-y", "@modelcontextprotocol/server-memory"],
+  "description": "Persistent memory across sessions",
+  "enabled": false
+}

@@ -1,0 +1,7 @@
+{
+  "name": "filesystem",
+  "command": "npx",
+  "args": ["-y", "@modelcontextprotocol/server-filesystem", "${FILESYSTEM_ROOT}"],
+  "description": "Filesystem operations (set FILESYSTEM_ROOT env var)",
+  "enabled": false
+}

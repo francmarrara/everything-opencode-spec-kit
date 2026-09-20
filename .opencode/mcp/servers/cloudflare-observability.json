@@ -1,0 +1,7 @@
+{
+  "name": "cloudflare-observability",
+  "type": "http",
+  "url": "https://observability.mcp.cloudflare.com/mcp",
+  "description": "Cloudflare observability/logs",
+  "enabled": false
+}
