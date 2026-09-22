@@ -1,3 +1,20 @@
+MIT License — Free for everyone / Libera per tutti
+
+Copyright (c) 2026 Everything OpenCode + Spec Kit Contributors
+
+This software is free for everyone. You can use, copy, modify, merge,
+publish, distribute, sublicense and sell it, including for commercial,
+private and educational purposes, with no restrictions other than
+preserving this copyright notice.
+Questo software è libero per tutti. Puoi usarlo, copiarlo, modificarlo,
+unirlo, pubblicarlo, distribuirlo, concederlo in sottolicenza e venderlo,
+anche per scopi commerciali, privati e didattici, senza altre restrizioni
+oltre a conservare questo avviso di copyright.
+
+---
+Official English text (legally binding / testo legalmente vincolante):
+---
+
 MIT License
 
 Copyright (c) 2026 Everything OpenCode + Spec Kit Contributors
@@ -21,8 +38,35 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 ---
+Traduzione informativa in italiano (cortesia, non legalmente vincolante):
+---
+
+Licenza MIT
+
+Copyright (c) 2026 Everything OpenCode + Spec Kit Contributors
+
+Con la presente si concede gratuitamente a chiunque ottenga una copia
+di questo software e della relativa documentazione (il "Software") il
+permesso di trattare il Software senza restrizioni, inclusi senza
+limitazioni i diritti di usare, copiare, modificare, unire, pubblicare,
+distribuire, concedere in sottolicenza e/o vendere copie del Software,
+e di consentire alle persone a cui il Software è fornito di fare lo stesso,
+alle seguenti condizioni:
+
+L'avviso di copyright sopra riportato e questo avviso di permesso devono
+essere inclusi in tutte le copie o parti sostanziali del Software.
+
+IL SOFTWARE È FORNITO "COSÌ COM'È", SENZA GARANZIE DI ALCUN TIPO, ESPLICITE O
+IMPLICITE, INCLUSE SENZA LIMITAZIONI LE GARANZIE DI COMMERCIABILITÀ,
+IDONEITÀ PER UNO SCOPO PARTICOLARE E NON VIOLAZIONE. IN NESSUN CASO GLI
+AUTORI O I DETENTORI DEL COPYRIGHT SARANNO RESPONSABILI PER QUALSIASI
+RECLAMO, DANNO O ALTRA RESPONSABILITÀ, SIA IN AZIONE CONTRATTUALE, ILLECITO
+O ALTRO, DERIVANTE DA, FUORI DA O IN CONNESSIONE CON IL SOFTWARE O L'USO O
+ALTRE OPERAZIONI NEL SOFTWARE.
+
+---
 
 This project incorporates components from the following upstream project:
 
-everything-claude-code (https://github.com/anthropics/everything-claude-code)
+everything-claude-code (https://github.com/affaan-m/everything-claude-code)
 Licensed under the MIT License
