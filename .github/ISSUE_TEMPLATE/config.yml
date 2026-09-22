@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Security issue / Problema di sicurezza
+    url: ./SECURITY.md
+    about: Please do not open public issues for vulnerabilities

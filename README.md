@@ -2,6 +2,9 @@
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Free for everyone](https://img.shields.io/badge/free_for_everyone-yes-green.svg)](LICENSE)
+[![CI](https://github.com/francmarrara/everything-opencode-spec-kit/actions/workflows/ci.yml/badge.svg)](https://github.com/francmarrara/everything-opencode-spec-kit/actions/workflows/ci.yml)
+[![Release](https://img.shields.io/github/v/release/francmarrara/everything-opencode-spec-kit)](https://github.com/francmarrara/everything-opencode-spec-kit/releases)
+[![Stars](https://img.shields.io/github/stars/francmarrara/everything-opencode-spec-kit?style=social)](https://github.com/francmarrara/everything-opencode-spec-kit/stargazers)
 
 > **🌍 Multilingual README / README multilingua:**
 > **🇬🇧 [English](#-english) | 🇮🇹 [Italiano](#-italiano)**
@@ -257,6 +260,10 @@ The framework and created projects must remain separated:
 
 This project incorporates components from [everything-claude-code](https://github.com/affaan-m/everything-claude-code) by Affaan Mustafa, licensed under MIT.
 
+### Community
+
+Contributions welcome in English or Italian. See [CONTRIBUTING.md](CONTRIBUTING.md), [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md), [SECURITY.md](SECURITY.md) and [ROADMAP.md](ROADMAP.md). Growth plan: [docs/GITHUB_GROWTH.md](docs/GITHUB_GROWTH.md).
+
 ### License
 
 MIT — free for everyone. Commercial, private and educational use allowed. See [LICENSE](LICENSE) for details.
@@ -509,6 +516,10 @@ Il framework e i progetti creati devono restare separati:
 ### Provenienza
 
 Questo progetto incorpora componenti da [everything-claude-code](https://github.com/affaan-m/everything-claude-code) di Affaan Mustafa, licenziato sotto MIT.
+
+### Community
+
+Contributi benvenuti in inglese o italiano. Vedi [CONTRIBUTING.md](CONTRIBUTING.md), [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md), [SECURITY.md](SECURITY.md) e [ROADMAP.md](ROADMAP.md). Piano crescita: [docs/GITHUB_GROWTH.md](docs/GITHUB_GROWTH.md).
 
 ### Licenza
 
